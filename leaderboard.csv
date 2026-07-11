@@ -1,0 +1,4 @@
+rank,run_mode,model,provider,model_version,workreadybench_version,score,checklist_points,common_quality_points,penalties,lowest_prompt_score,run_date,notes
+1,classic,DeepSeek V3,DeepSeek,unspecified,1.0,91.50,640,275,0,70,2026-07-10,WB-001; exact model version and settings not provided
+1,mega,Fable 5 Max,unspecified,unspecified,1.1,100.00,700,300,0,100,2026-07-10,WB-002; provider exact model version and settings not provided
+2,mega,Sarvam,unspecified,unspecified,1.1,69.20,485,222,15,36,2026-07-10,WB-003; provider exact model version and settings not provided

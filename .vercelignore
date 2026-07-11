@@ -1,0 +1,8 @@
+submissions/
+results/
+leaderboard.csv
+SUBMISSION_TEMPLATE.md
+prompts/WorkReadyBench-v1.0.md
+prompts/WorkReadyBench-v1.1-Mega.md
+scoring/ANSWER_KEYS.md
+scoring/JUDGE_GUIDE.md
