@@ -2,6 +2,8 @@
 
 **One prompt. 24 independent tests. A measurable factual-reliability profile.**
 
+**Live website:** [hallucinationbench.vercel.app](https://hallucinationbench.vercel.app)
+
 HallucinationBench is an open, tools-off benchmark for measuring whether an AI model:
 
 - invents false or unsupported factual claims;
