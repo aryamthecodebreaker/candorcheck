@@ -1,5 +1,5 @@
 export const navigation = [
-  { href: "/benchmark", label: "Start a test" },
+  { href: "/benchmark", label: "Test" },
   { href: "/scoring", label: "Score locally" },
   { href: "/compare", label: "Compare reports" },
   { href: "/methodology", label: "How it works" },

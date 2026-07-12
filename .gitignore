@@ -18,6 +18,7 @@
 # testing and local artifacts
 /playwright-report/
 /test-results/
+/.design-audit/
 *.log
 
 # operating systems and editors

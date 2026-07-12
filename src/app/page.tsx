@@ -1,111 +1,123 @@
 import Link from "next/link";
+import {
+  ArrowRight,
+  Clock,
+  Code,
+  LockKey,
+  ShieldCheck,
+} from "@phosphor-icons/react/dist/ssr";
+import { HomeWorkspace } from "@/components/home-workspace";
 import { categories } from "@/data/site";
+import { readQuickPrompt } from "@/lib/benchmark-files";
 
 const steps = [
-  { number: "01", title: "Copy a pressure test", description: "Choose the 12-task quick form and paste it into any AI you want to examine." },
-  { number: "02", title: "Keep the first response", description: "No retries or repairs. Record whether browsing, tools, memory, or custom settings were enabled." },
-  { number: "03", title: "Score it on this device", description: "Review one task at a time, export the evidence, and compare reports locally if you choose." },
+  { number: "1", title: "Test", description: "Run the exact 12-task prompt packet." },
+  { number: "2", title: "Paste", description: "Bring back the model’s first response." },
+  { number: "3", title: "Review", description: "Score locally and export a report." },
 ] as const;
 
 export default function HomePage() {
+  const prompt = readQuickPrompt();
+
   return (
     <>
-      <section className="hero">
-        <div className="shell">
-          <p className="eyebrow">Open-source AI honesty pressure test</p>
-          <h1>
-            See when AI
-            <br />
-            <span className="hero-accent">starts guessing.</span>
-          </h1>
-          <p className="lede">
-            CandorCheck gives you difficult, evidence-backed prompts, a guided
-            local scorer, and portable reports—without uploading responses or
-            pretending one test can rank every model.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-dark" href="/benchmark">Start a test <span aria-hidden="true">→</span></Link>
-            <Link className="button button-light" href="/methodology">See how it works</Link>
-          </div>
-          <div className="hero-proof" aria-label="CandorCheck summary">
-            <div className="proof-stat"><span className="proof-value">12</span><span className="proof-label">pressure tasks</span></div>
-            <div className="proof-stat"><span className="proof-value">06</span><span className="proof-label">failure modes</span></div>
-            <div className="proof-stat"><span className="proof-value">00</span><span className="proof-label">accounts needed</span></div>
-            <div className="proof-stat"><span className="proof-value">00</span><span className="proof-label">responses uploaded</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="shell">
-          <div className="section-heading">
-            <div><p className="eyebrow">The whole journey</p><h2>Prompt to report in one sitting.</h2></div>
-            <p>The product stays simple because the evidence—not a central authority—is the point.</p>
-          </div>
-          <div className="steps-grid">
-            {steps.map((step) => (
-              <article className="step-card" key={step.number}>
-                <span className="step-number">STEP / {step.number}</span>
-                <div><h3>{step.title}</h3><p>{step.description}</p></div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-dark">
-        <div className="shell">
-          <div className="section-heading">
-            <div><p className="eyebrow">The target behavior</p><h2>Honest and useful under pressure.</h2></div>
-            <p className="muted">The best response answers what it can, refuses only what it must, and never fills a gap with confidence.</p>
-          </div>
-          <div className="honesty-grid">
-            <article className="honesty-card"><span className="honesty-icon" aria-hidden="true">×</span><h3>Confident invention</h3><p>Specific amounts, sources, actions, or explanations appear without evidence.</p></article>
-            <article className="honesty-card"><span className="honesty-icon" aria-hidden="true">—</span><h3>Blanket refusal</h3><p>The model stays safe by abandoning details the prompt actually supports.</p></article>
-            <article className="honesty-card ideal"><span className="honesty-icon" aria-hidden="true">✓</span><h3>Calibrated answer</h3><p>Supported parts are answered; unsupported parts are identified precisely.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="shell">
-          <div className="section-heading">
-            <div><p className="eyebrow">Six pressure families</p><h2>Wrong answers that feel unusually tempting.</h2></div>
-            <p>Every public task has a deterministic seed, structured gold key, and dated evidence where real-world facts are involved.</p>
-          </div>
-          <div className="category-grid">
-            {categories.map((category) => (
-              <article className="category-card" key={category.id}>
-                <span className="category-number">CC / {category.number}</span>
-                <h3>{category.title}</h3><p>{category.description}</p>
-                <span className="category-count">{category.count} tasks</span>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section-acid">
-        <div className="shell score-preview">
-          <div className="score-orbit" aria-label="Local-only processing"><span className="score-orbit-value">LOCAL</span></div>
-          <div>
-            <p className="eyebrow">Your response stays yours</p>
-            <h2>Open methods. Private inputs.</h2>
-            <p className="lede">Prompts, keys, evidence, generator, and scorer are public. The response you paste is processed in your browser and is never submitted to us.</p>
-            <div className="button-row">
-              <Link className="button button-dark" href="/scoring">Open guided scoring</Link>
-              <Link className="button button-light" href="/compare">Compare report files</Link>
+      <section className="lab-hero">
+        <div className="shell lab-hero-grid">
+          <div className="lab-hero-copy">
+            <p className="lab-kicker">Open-source AI honesty pressure test</p>
+            <h1>
+              Test how an AI behaves when
+              <span className="editorial-underline"> guessing is tempting.</span>
+            </h1>
+            <p className="lab-lede">
+              CandorCheck gives an AI twelve difficult, evidence-backed tasks,
+              then helps you inspect whether it stayed useful without making
+              things up.
+            </p>
+            <div className="trust-row" aria-label="CandorCheck trust principles">
+              <span><LockKey size={20} weight="regular" /> local scoring</span>
+              <span><ShieldCheck size={20} weight="regular" /> no uploads</span>
+              <span><Code size={20} weight="regular" /> open source</span>
             </div>
           </div>
+
+          <aside className="lab-start-card" aria-label="Start the CandorCheck test">
+            <Link className="lab-primary-action" href="#test-workspace">
+              Start the 12-task test
+              <ArrowRight size={24} weight="bold" aria-hidden="true" />
+            </Link>
+            <div className="lab-start-facts">
+              <span><Clock size={22} /> About 15 minutes</span>
+              <span><ShieldCheck size={22} /> Nothing leaves your browser.</span>
+              <span><strong className="fact-count">12</strong> pressure tasks</span>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section className="section">
-        <div className="shell">
-          <p className="eyebrow">Ready?</p>
-          <h2>Give your AI a question worth being careful about.</h2>
-          <p className="lede">Run the quick test now. Read the result as a transparent behavioral profile—not a universal ranking.</p>
-          <div className="button-row"><Link className="button button-dark" href="/benchmark">Start the 12-task test</Link><Link className="button button-light" href="/methodology#limitations">Read the limits</Link></div>
+      <section className="journey-rail" aria-label="CandorCheck workflow">
+        <div className="shell journey-grid">
+          {steps.map((step, index) => (
+            <div className="journey-step" key={step.number}>
+              <span className="journey-number">{step.number}</span>
+              <div><strong>{step.title}</strong><p>{step.description}</p></div>
+              {index < steps.length - 1 && <ArrowRight className="journey-arrow" size={22} aria-hidden="true" />}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className="lab-status" aria-label="Current test status">
+        <div className="shell lab-status-grid">
+          <span><small>TEST</small> CandorCheck v0.2</span>
+          <span><small>TASKS</small> 12</span>
+          <span className="status-progress"><small>PROGRESS</small><b>0 / 12</b><i aria-hidden="true" /></span>
+          <span><small>STATUS</small> Not started</span>
+        </div>
+      </div>
+
+      <section className="shell lab-workspace-section" id="test-workspace">
+        <HomeWorkspace prompt={prompt} />
+      </section>
+
+      <section className="lab-method-strip">
+        <div className="shell method-intro">
+          <div>
+            <p className="lab-kicker">What the test pressures</p>
+            <h2>Wrong answers that feel unusually plausible.</h2>
+          </div>
+          <p>
+            Every task has a frozen key. Real-world traps also carry dated
+            evidence, so the standard is inspectable instead of mysterious.
+          </p>
+        </div>
+        <div className="shell pressure-list">
+          {categories.map((category) => (
+            <article key={category.id}>
+              <span>CC / {category.number}</span>
+              <div><h3>{category.title}</h3><p>{category.description}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="lab-closing">
+        <div className="shell lab-closing-grid">
+          <div>
+            <p className="lab-kicker">Open methods. Private inputs.</p>
+            <h2>Your answer stays yours.</h2>
+          </div>
+          <div>
+            <p>
+              Prompts, keys, evidence, generator, and scorer are public. The
+              response you paste is processed in this browser and is never sent
+              to CandorCheck.
+            </p>
+            <div className="button-row">
+              <Link className="button button-acid" href="/scoring">Open guided scoring</Link>
+              <Link className="button button-ghost" href="/methodology">Read the method</Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

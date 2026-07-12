@@ -14,13 +14,14 @@ export default function BenchmarkPage() {
 
   return (
     <>
-      <section className="shell page-hero">
-        <p className="eyebrow">CandorCheck / Start a test</p>
-        <h1 className="page-title">See what happens when guessing is tempting.</h1>
+      <section className="shell lab-page-head">
+        <p className="lab-kicker">Step 1 / Test</p>
+        <h1>Give any AI a question worth being careful about.</h1>
         <p className="lede">
-          Copy one prompt into any AI, keep its first response, then score it locally.
-          No account, API key, upload, or central leaderboard.
+          Copy the exact packet, use it in a fresh conversation, and keep the
+          model&apos;s first complete response. You&apos;ll score it on this device.
         </p>
+        <div className="page-trust-line"><span>12 tasks</span><span>About 15 minutes</span><span>No account or API key</span></div>
       </section>
 
       <section className="shell section-tight">
@@ -43,7 +44,7 @@ export default function BenchmarkPage() {
           <div>
             <PromptPanel prompt={quickPrompt} version="v0.2-quick" taskCount={12} />
             <div className="button-row next-step-row">
-              <Link className="button button-dark" href="/scoring">I have a response — score it</Link>
+              <Link className="button button-acid" href="/scoring">I have a response — score it</Link>
               <span>Form ID: cc-v0.2-0sqn4bp</span>
             </div>
           </div>

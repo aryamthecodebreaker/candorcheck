@@ -13,9 +13,9 @@ export default function ScoringPage() {
 
   return (
     <>
-      <section className="shell page-hero scoring-hero">
-        <p className="eyebrow">CandorCheck / Guided scoring</p>
-        <h1 className="page-title">One answer at a time. Every judgment visible.</h1>
+      <section className="shell lab-page-head scoring-hero">
+        <p className="lab-kicker">Step 2 / Paste · Step 3 / Review</p>
+        <h1>Score the first response, one decision at a time.</h1>
         <p className="lede">
           Paste the first response, review each task against its frozen key, and
           export a portable report. The answer never leaves your browser.

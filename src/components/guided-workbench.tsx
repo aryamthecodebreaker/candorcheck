@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type ResponseMode = "DIRECT" | "CONDITIONAL" | "ABSTAINED" | "OMITTED";
 type Resolution = "FULL" | "PARTIAL" | "NONE";
@@ -112,6 +112,16 @@ export function GuidedWorkbench({ benchmarkKey }: { benchmarkKey: QuickKey }) {
   const [currentTask, setCurrentTask] = useState(0);
   const [reviews, setReviews] = useState(() => initialReviews(benchmarkKey));
   const parsed = useMemo(() => parseNumberedResponse(response), [response]);
+
+  useEffect(() => {
+    const draft = sessionStorage.getItem("candorcheck-draft-response");
+    if (!draft) return;
+    const timeout = window.setTimeout(() => {
+      setResponse(draft);
+      sessionStorage.removeItem("candorcheck-draft-response");
+    }, 0);
+    return () => window.clearTimeout(timeout);
+  }, []);
 
   const metrics = useMemo(() => {
     const severityWeight = (task: QuickTask, subpart: QuickSubpart) => {
