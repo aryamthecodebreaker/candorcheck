@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface PromptPanelProps {
   prompt: string;
@@ -11,6 +11,7 @@ interface PromptPanelProps {
 
 export function PromptPanel({ prompt, version, taskCount = 12, label = "CandorCheck" }: PromptPanelProps) {
   const [status, setStatus] = useState("Ready to copy");
+  const promptRef = useRef<HTMLPreElement>(null);
 
   async function copyPrompt() {
     try {
@@ -32,7 +33,18 @@ export function PromptPanel({ prompt, version, taskCount = 12, label = "CandorCh
       textArea.select();
       const copied = document.execCommand("copy");
       textArea.remove();
-      setStatus(copied ? `Copied all ${taskCount} tasks` : "Copy failed — select the prompt manually");
+      if (copied) {
+        setStatus(`Copied all ${taskCount} tasks`);
+      } else if (promptRef.current) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(promptRef.current);
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        setStatus("Prompt selected — press Ctrl+C");
+      } else {
+        setStatus("Copy failed — select the prompt manually");
+      }
     }
   }
 
@@ -70,7 +82,7 @@ export function PromptPanel({ prompt, version, taskCount = 12, label = "CandorCh
           </button>
         </div>
       </div>
-      <pre className="prompt-content" tabIndex={0}>
+      <pre ref={promptRef} className="prompt-content" tabIndex={0}>
         {prompt}
       </pre>
     </div>
