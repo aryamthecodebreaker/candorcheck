@@ -4,23 +4,23 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hallucinationbench.vercel.app"),
+  metadataBase: new URL("https://candorcheck.vercel.app"),
   title: {
-    default: "HallucinationBench — One prompt. 24 traps.",
-    template: "%s · HallucinationBench",
+    default: "CandorCheck — See when AI starts guessing",
+    template: "%s · CandorCheck",
   },
   description:
-    "A transparent 24-part benchmark for measuring AI hallucination, groundedness, abstention, and capability honesty in one message.",
+    "An open-source, local-first pressure test for examining when an AI guesses, over-refuses, or stays honestly useful.",
   openGraph: {
-    title: "HallucinationBench",
+    title: "CandorCheck",
     description:
-      "One prompt. 24 independent tests. A measurable picture of AI factual reliability.",
+      "Run difficult prompts, score the first response locally, and export a transparent behavioral report.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "HallucinationBench",
-    description: "One prompt. 24 traps. Less guessing, more evidence.",
+    title: "CandorCheck",
+    description: "See when AI starts guessing—without uploading the response.",
   },
 };
 

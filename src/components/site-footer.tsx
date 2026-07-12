@@ -9,8 +9,7 @@ export function SiteFooter() {
         <div>
           <LogoMark />
           <p className="footer-note">
-            A transparent, one-message stress test for factual reliability,
-            grounding, and honest uncertainty.
+            Open-source pressure tests and local scoring for AI honesty under uncertainty.
           </p>
         </div>
         <div className="footer-links">
@@ -30,7 +29,7 @@ export function SiteFooter() {
       </div>
       <div className="shell footer-bottom">
         <span>Released under the MIT License.</span>
-        <span>Built for reproducible comparisons, not marketing claims.</span>
+        <span>No accounts. No uploads. No official model leaderboard.</span>
       </div>
     </footer>
   );

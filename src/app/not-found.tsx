@@ -6,7 +6,7 @@ export default function NotFound() {
       <p className="eyebrow">404 / Missing evidence</p>
       <h1>This page is not in the record.</h1>
       <p className="lede">
-        HallucinationBench does not invent missing pages. Return to the verified
+        CandorCheck does not invent missing pages. Return to the verified
         site instead.
       </p>
       <Link className="button button-dark" href="/">

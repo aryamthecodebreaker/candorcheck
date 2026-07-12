@@ -1,95 +1,86 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PromptPanel } from "@/components/prompt-panel";
-import { extractTextFence, readHallucinationPrompt } from "@/lib/benchmark-files";
+import { extractTextFence, readHallucinationPrompt, readQuickPrompt } from "@/lib/benchmark-files";
 
 export const metadata: Metadata = {
-  title: "Run the benchmark",
-  description:
-    "Copy the exact HallucinationBench v0.1 Mega prompt and run all 24 factual-reliability tests in one message.",
+  title: "Start a test",
+  description: "Copy a CandorCheck prompt, test an AI in a fresh chat, and keep its first response for local guided scoring.",
 };
 
 export default function BenchmarkPage() {
-  const markdown = readHallucinationPrompt();
-  const prompt = extractTextFence(markdown);
+  const quickPrompt = readQuickPrompt();
+  const classicPrompt = extractTextFence(readHallucinationPrompt());
 
   return (
     <>
       <section className="shell page-hero">
-        <p className="eyebrow">HallucinationBench v0.1 / Run</p>
-        <h1 className="page-title">Copy once. Test all 24 behaviors.</h1>
+        <p className="eyebrow">CandorCheck / Start a test</p>
+        <h1 className="page-title">See what happens when guessing is tempting.</h1>
         <p className="lede">
-          This is the canonical Mega prompt. Follow the run conditions exactly,
-          keep the first response untouched, and score it under a blind ID.
+          Copy one prompt into any AI, keep its first response, then score it locally.
+          No account, API key, upload, or central leaderboard.
         </p>
       </section>
 
       <section className="shell section-tight">
-        <div className="instruction-grid" aria-label="Run checklist">
-          <article className="instruction-card">
-            <strong>1. Start clean</strong>
-            <p>Open a fresh chat with no earlier conversation or custom instructions.</p>
+        <div className="test-choice">
+          <article className="test-choice-copy">
+            <span className="choice-badge">Recommended · 12 tasks</span>
+            <h2>Quick pressure test</h2>
+            <p>
+              A naturalistic v0.2 form covering missing evidence, false premises,
+              fabricated citations and APIs, mixed tasks, tempting extrapolation,
+              and hidden ambiguity.
+            </p>
+            <ul className="side-list compact-list">
+              <li>Fresh chat</li>
+              <li>First response only</li>
+              <li>Tools optional, but record what was enabled</li>
+              <li>Do not reveal the answer key before the response</li>
+            </ul>
           </article>
-          <article className="instruction-card">
-            <strong>2. Disable assistance</strong>
-            <p>Turn off browsing, tools, files, connectors, and persistent memory.</p>
-          </article>
-          <article className="instruction-card">
-            <strong>3. Preserve output</strong>
-            <p>Keep only the first complete response. Do not retry, repair, or continue it.</p>
-          </article>
-        </div>
-
-        <div className="page-layout">
           <div>
-            <PromptPanel prompt={prompt} version="v0.1" />
-            <div className="callout run-warning">
-              <strong>Before sending:</strong> make sure the model has enough output
-              capacity for 24 short sections. A truncated result is provisional and
-              must report its actual coverage.
+            <PromptPanel prompt={quickPrompt} version="v0.2-quick" taskCount={12} />
+            <div className="button-row next-step-row">
+              <Link className="button button-dark" href="/scoring">I have a response — score it</Link>
+              <span>Form ID: cc-v0.2-0sqn4bp</span>
             </div>
           </div>
-          <aside className="side-card" aria-label="Standard run requirements">
-            <h2>Standard run</h2>
-            <ul className="side-list">
-              <li>Exact prompt, unchanged</li>
-              <li>Fresh conversation</li>
-              <li>Tools and memory off</li>
-              <li>First response only</li>
-              <li>All H1–H24 sections</li>
-              <li>Blind ID before judging</li>
-            </ul>
-            <div className="button-row">
-              <Link className="button button-dark button-small" href="/scoring">
-                Score the output
-              </Link>
-            </div>
-          </aside>
+        </div>
+      </section>
+
+      <section className="section section-dark">
+        <div className="shell section-heading">
+          <div>
+            <p className="eyebrow">How to run it</p>
+            <h2>Three rules keep your result useful.</h2>
+          </div>
+          <div className="run-rules">
+            <p><strong>01</strong> Use a fresh conversation and record whether tools or browsing were enabled.</p>
+            <p><strong>02</strong> Keep the first complete response—no retries, hints, edits, or follow-up repairs.</p>
+            <p><strong>03</strong> Treat the result as a behavioral diagnostic on this form, not a universal model score.</p>
+          </div>
         </div>
       </section>
 
       <section className="section">
-        <div className="shell score-preview protocol-preview">
+        <div className="shell legacy-test">
           <div>
-            <p className="eyebrow">Record with every run</p>
-            <h2>Metadata makes comparisons credible.</h2>
-          </div>
-          <div className="prose">
-            <ul>
-              <li>Blind submission ID, such as <code>HB-001</code></li>
-              <li>Provider and exact model/version string</li>
-              <li>Run date, interface or API, and changed settings</li>
-              <li>Whether tools, browsing, files, connectors, and memory were disabled</li>
-              <li>Whether the output is the first response with no retries or edits</li>
-            </ul>
+            <p className="eyebrow">Historical form</p>
+            <h2>Classic 24-task coached test</h2>
             <p>
-              If any standard condition is unknown or violated, the response can
-              still be scored, but it must be labeled <strong>non-standard</strong>.
+              The original HallucinationBench v0.1 form remains available for
+              reproducibility. Its explicit uncertainty instructions make it easier
+              and its results are not comparable with the v0.2 quick test.
             </p>
-            <Link className="button button-light" href="/methodology#protocol">
-              Full evaluation protocol
-            </Link>
           </div>
+          <details>
+            <summary className="button button-light">Show the legacy prompt</summary>
+            <div className="legacy-prompt-wrap">
+              <PromptPanel prompt={classicPrompt} version="legacy-v0.1" taskCount={24} label="Legacy HallucinationBench" />
+            </div>
+          </details>
         </div>
       </section>
     </>

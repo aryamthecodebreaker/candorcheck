@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "HallucinationBench — One prompt, 24 traps";
+export const alt = "CandorCheck — See when AI starts guessing";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -35,21 +35,21 @@ export default function OpenGraphImage() {
               fontWeight: 800,
             }}
           >
-            HB
+            CC
           </div>
-          <div style={{ fontSize: 28, fontWeight: 700 }}>HallucinationBench</div>
+          <div style={{ fontSize: 28, fontWeight: 700 }}>CandorCheck</div>
         </div>
         <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
             <div style={{ fontSize: 76, fontWeight: 800, letterSpacing: "-4px" }}>
-              One prompt. 24 traps.
+              See when AI starts guessing.
             </div>
             <div style={{ color: "#bcc3bc", fontSize: 27 }}>
-              A transparent stress test for AI factual reliability.
+              Open prompts. Local scoring. No model leaderboard.
             </div>
           </div>
           <div style={{ color: "#c9ff4a", fontSize: 118, fontWeight: 900, letterSpacing: "-10px" }}>
-            24
+            12
           </div>
         </div>
       </div>

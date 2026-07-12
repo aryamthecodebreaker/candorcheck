@@ -1,18 +1,15 @@
 # Changelog
 
-All notable benchmark and website changes are recorded here.
+## 0.2.0 — 2026-07-12
 
-## [0.1.0] - 2026-07-11
+- Renamed the project to CandorCheck.
+- Reframed it as an open-source self-test lab with no official model leaderboard.
+- Added a deterministic 12-task naturalistic quick form.
+- Added immutable API evidence, citation-index captures, authoritative premise sources, and validation gates.
+- Added guided one-task-at-a-time local scoring.
+- Added portable reports and local report comparison.
+- Retained HallucinationBench v0.1 only as historical reproducibility material.
 
-### Added
+## HallucinationBench 0.1.0
 
-- HallucinationBench v0.1 Mega prompt with 24 interleaved tasks.
-- Gold answer key with allowed and forbidden claims for every task.
-- Human judge guide with claim severities, reliability scoring, coverage, abstention, capability, and calibration metrics.
-- Browser-local response parser, scoring worksheet, and Markdown/JSON exports.
-- Methodology, run protocol, benchmark card, submission template, and evidence-gated leaderboard.
-- Responsive Next.js website prepared for Vercel deployment.
-
-### Preserved
-
-- Existing WorkReadyBench prompt, scoring, submission, and leaderboard artifacts remain available as a separate historical benchmark.
+- Initial coached 24-task pilot.

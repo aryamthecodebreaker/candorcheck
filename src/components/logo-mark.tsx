@@ -2,12 +2,12 @@ import Link from "next/link";
 
 export function LogoMark() {
   return (
-    <Link className="brand" href="/" aria-label="HallucinationBench home">
+    <Link className="brand" href="/" aria-label="CandorCheck home">
       <span className="brand-mark" aria-hidden="true">
-        HB
+        CC
       </span>
-      <span className="brand-name">HallucinationBench</span>
-      <span className="brand-version">v0.1</span>
+      <span className="brand-name">CandorCheck</span>
+      <span className="brand-version">open</span>
     </Link>
   );
 }

@@ -1,68 +1,53 @@
 export const navigation = [
-  { href: "/benchmark", label: "Run benchmark" },
-  { href: "/scoring", label: "Score a run" },
-  { href: "/methodology", label: "Methodology" },
-  { href: "/leaderboard", label: "Leaderboard" },
+  { href: "/benchmark", label: "Start a test" },
+  { href: "/scoring", label: "Score locally" },
+  { href: "/compare", label: "Compare reports" },
+  { href: "/methodology", label: "How it works" },
 ] as const;
 
 export const categories = [
   {
-    id: "knowledge",
+    id: "missing",
     number: "01",
-    title: "Stable knowledge",
-    count: 3,
-    description: "Separates genuine knowledge from polished guessing on fixed facts.",
-  },
-  {
-    id: "unanswerable",
-    number: "02",
-    title: "Unanswerable questions",
-    count: 3,
-    description: "Checks whether the model notices when the required information is absent.",
+    title: "Pressure to guess",
+    count: 2,
+    description: "Missing files and screenshots paired with a user who demands a specific answer.",
   },
   {
     id: "premise",
-    number: "03",
-    title: "False premises",
-    count: 3,
-    description: "Rewards correcting the question instead of confidently accepting its claim.",
-  },
-  {
-    id: "grounding",
-    number: "04",
-    title: "Document grounding",
-    count: 3,
-    description: "Requires every factual claim to stay inside the supplied evidence.",
-  },
-  {
-    id: "missing",
-    number: "05",
-    title: "Missing evidence",
-    count: 3,
-    description: "Tests resistance to inventing attachment contents, records, or unseen data.",
+    number: "02",
+    title: "Near-miss premises",
+    count: 2,
+    description: "Plausible but subtly swapped names, dates, and attributions.",
   },
   {
     id: "citations",
-    number: "06",
-    title: "Citations & quotes",
-    count: 3,
-    description: "Targets fabricated sources, page numbers, quotations, and attributions.",
+    number: "03",
+    title: "Fabricated artifacts",
+    count: 2,
+    description: "Nonexistent papers and API methods surrounded by convincing real details.",
+  },
+  {
+    id: "compound",
+    number: "04",
+    title: "Mixed-answer tasks",
+    count: 2,
+    description: "Most subparts are answerable; one tempting detail is not.",
+  },
+  {
+    id: "distractors",
+    number: "05",
+    title: "Tempting extrapolation",
+    count: 2,
+    description: "Nearby numbers and trends invite a confident unsupported conclusion.",
   },
   {
     id: "ambiguity",
-    number: "07",
-    title: "Conflicting evidence",
-    count: 3,
-    description: "Checks whether uncertainty is preserved when sources disagree or terms are ambiguous.",
-  },
-  {
-    id: "capability",
-    number: "08",
-    title: "Capability honesty",
-    count: 3,
-    description: "Prevents false claims that an external message, file, or account was changed.",
+    number: "06",
+    title: "Hidden ambiguity",
+    count: 2,
+    description: "Conflicting sources and equally defensible rules must be surfaced, not silently resolved.",
   },
 ] as const;
 
-export const repositoryUrl =
-  "https://github.com/aryamthecodebreaker/hallucinationbench";
+export const repositoryUrl = "https://github.com/aryamthecodebreaker/candorcheck";

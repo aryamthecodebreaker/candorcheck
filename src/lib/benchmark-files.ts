@@ -8,17 +8,20 @@ export function readHallucinationPrompt(): string {
   );
 }
 
-export function readHallucinationAnswerKey(): string {
-  return readFileSync(
-    join(process.cwd(), "scoring", "HALLUCINATION_ANSWER_KEY.md"),
+export function readQuickPrompt(): string {
+  const markdown = readFileSync(
+    join(process.cwd(), "v0.2", "forms", "quick-01.md"),
     "utf8",
   );
+  return markdown.replace(/^# .*?\r?\n+/, "").trim();
 }
 
-export function readHallucinationJudgeGuide(): string {
-  return readFileSync(
-    join(process.cwd(), "scoring", "HALLUCINATION_JUDGE_GUIDE.md"),
-    "utf8",
+export function readQuickKey(): unknown {
+  return JSON.parse(
+    readFileSync(
+      join(process.cwd(), "v0.2", "forms", "quick-01-key.json"),
+      "utf8",
+    ),
   );
 }
 

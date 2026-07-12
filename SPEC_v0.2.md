@@ -1,6 +1,6 @@
-# HallucinationBench v0.2 — Design Specification
+# CandorCheck Research Track v0.2 — Design Specification
 
-**Status:** Draft design document. Nothing in this file changes v0.1. The v0.1 prompt, answer key, judge guide, and leaderboard remain frozen and are not comparable with v0.2.
+> **Status:** Optional post-launch research track. The public CandorCheck product is a local-first self-test lab with no official leaderboard. This document preserves the stricter private-form, multi-run protocol for future research releases; it is not required to use the public quick form.
 
 ## 1. Motivation
 

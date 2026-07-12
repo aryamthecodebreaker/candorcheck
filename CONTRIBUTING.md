@@ -1,30 +1,31 @@
-# Contributing to HallucinationBench
+# Contributing to CandorCheck
 
-Contributions are welcome when they improve clarity, reproducibility, accessibility, or evidence quality.
+Issues, documentation improvements, evidence corrections, accessibility fixes, and new task templates are welcome.
 
-## Before proposing a benchmark change
+## Before opening a pull request
 
-Released prompt and answer-key versions are immutable. Do not edit v0.1 in place to change task meaning, a gold resolution, or a scoring rule. Propose the change for a new version and explain:
+1. Keep the product local-first: do not add response uploads, accounts, tracking, or a hosted leaderboard.
+2. Do not claim that a form score is a universal model hallucination rate.
+3. Run `npm run check`.
+4. Keep unrelated changes out of the pull request.
 
-- which hallucination behavior it tests;
-- why the task has one defensible resolution;
-- whether the answer is stable over time;
-- what evidence supports the gold answer;
-- plausible allowed and forbidden claims;
-- likely ambiguity or cultural/language bias; and
-- how the new form remains comparable in balance and difficulty.
+## New task requirements
 
-## Website changes
+Every task must include:
 
-1. Install dependencies with `npm install`.
-2. Create a focused branch.
-3. Make the smallest complete change.
-4. Run `npm run check`.
-5. Verify the affected routes at desktop and mobile widths.
-6. Describe the user impact and validation in the pull request.
+- a stable template ID and category;
+- deterministic generation from the provided RNG;
+- subpart-level `answerable`, `gold`, and `allowed` fields;
+- structured forbidden claims with stable IDs and severity `1`, `3`, or `5`;
+- naturalistic wording without coaching phrases;
+- a dated evidence bundle for real-world absence or false-premise claims.
 
-Do not add analytics, remote response processing, trackers, or API dependencies without an explicit privacy and methodology review.
+The task must survive the variant sweep in `v0.2/validate.mjs`. A passing validator is necessary but not sufficient: maintainers may request pilot evidence that the task is neither trivial nor ambiguous.
 
-## Result submissions
+## Evidence corrections
 
-Do not add a leaderboard row without the complete raw response, run metadata, per-task score, claim ledger, and reproducible judge evidence. Keep model identity blinded until scoring is final.
+Use immutable release commits for API evidence. Negative citation checks must record the query, index, result count, exact-title match count, timestamp, and response hash. “No record found” must never be rewritten as proof of nonexistence.
+
+## Reports
+
+Do not submit model score files for official ranking. CandorCheck does not maintain one.

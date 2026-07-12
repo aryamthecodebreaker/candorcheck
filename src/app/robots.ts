@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://hallucinationbench.vercel.app/sitemap.xml",
+    sitemap: "https://candorcheck.vercel.app/sitemap.xml",
   };
 }

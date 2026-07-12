@@ -5,17 +5,34 @@ import { useState } from "react";
 interface PromptPanelProps {
   prompt: string;
   version: string;
+  taskCount?: number;
+  label?: string;
 }
 
-export function PromptPanel({ prompt, version }: PromptPanelProps) {
+export function PromptPanel({ prompt, version, taskCount = 12, label = "CandorCheck" }: PromptPanelProps) {
   const [status, setStatus] = useState("Ready to copy");
 
   async function copyPrompt() {
     try {
-      await navigator.clipboard.writeText(prompt);
-      setStatus("Copied all 24 tasks");
+      if (!navigator.clipboard?.writeText) {
+        throw new Error("Clipboard API unavailable");
+      }
+      await Promise.race([
+        navigator.clipboard.writeText(prompt),
+        new Promise<never>((_, reject) => window.setTimeout(() => reject(new Error("Clipboard timed out")), 600)),
+      ]);
+      setStatus(`Copied all ${taskCount} tasks`);
     } catch {
-      setStatus("Copy failed — select the prompt manually");
+      const textArea = document.createElement("textarea");
+      textArea.value = prompt;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      const copied = document.execCommand("copy");
+      textArea.remove();
+      setStatus(copied ? `Copied all ${taskCount} tasks` : "Copy failed — select the prompt manually");
     }
   }
 
@@ -24,7 +41,7 @@ export function PromptPanel({ prompt, version }: PromptPanelProps) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `HallucinationBench-${version}-Mega.txt`;
+    link.download = `CandorCheck-${version}.txt`;
     document.body.appendChild(link);
     link.click();
     link.remove();
@@ -38,7 +55,7 @@ export function PromptPanel({ prompt, version }: PromptPanelProps) {
         <div>
           <div className="prompt-toolbar-label">
             <span className="status-dot" aria-hidden="true" />
-            HallucinationBench {version} / exact prompt
+            {label} {version} / exact prompt
           </div>
           <span className="sr-status" aria-live="polite">
             {status}

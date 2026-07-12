@@ -1,1 +1,0 @@
-rank,blind_id,model,provider,model_version,benchmark_version,reliability_score,claim_hallucination_rate,severity_adjusted_rate,weighted_burden,correct_coverage,abstention_f1,critical_claims,calibration_error,schema_compliant,run_status,run_date,evidence_url,notes

@@ -1,31 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ScoreWorkbench } from "@/components/score-workbench";
+import { GuidedWorkbench, type QuickKey } from "@/components/guided-workbench";
+import { readQuickKey } from "@/lib/benchmark-files";
 
 export const metadata: Metadata = {
   title: "Score a response",
-  description:
-    "Parse, manually judge, calculate, and export a HallucinationBench v0.1 result entirely in your browser.",
+  description: "Review a CandorCheck response one task at a time and export a local, transparent score report.",
 };
 
 export default function ScoringPage() {
+  const benchmarkKey = readQuickKey() as QuickKey;
+
   return (
     <>
       <section className="shell page-hero scoring-hero">
-        <p className="eyebrow">HallucinationBench v0.1 / Scorer</p>
-        <h1 className="page-title">Turn 24 answers into an evidence trail.</h1>
+        <p className="eyebrow">CandorCheck / Guided scoring</p>
+        <h1 className="page-title">One answer at a time. Every judgment visible.</h1>
         <p className="lede">
-          Parse the model’s untouched output, apply the human judge key, and
-          export a complete scorecard. No response data leaves your browser.
+          Paste the first response, review each task against its frozen key, and
+          export a portable report. The answer never leaves your browser.
         </p>
         <div className="button-row">
-          <Link className="button button-light" href="/methodology#claims">
-            Read claim-counting rules
-          </Link>
+          <Link className="button button-light" href="/methodology#scoring">How scoring works</Link>
+          <Link className="text-link" href="/benchmark">Need the prompt?</Link>
         </div>
       </section>
       <section className="shell section-tight">
-        <ScoreWorkbench />
+        <GuidedWorkbench benchmarkKey={benchmarkKey} />
       </section>
     </>
   );
