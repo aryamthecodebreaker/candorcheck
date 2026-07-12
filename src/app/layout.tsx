@@ -39,7 +39,7 @@ const serif = Source_Serif_4({
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body className={`${sans.variable} ${serif.variable}`}>
         <a className="skip-link" href="#main-content">
           Skip to content
